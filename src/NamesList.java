@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class NamesList {
 
     private ArrayList<String> names;
+    private final String FILE_EXTENSION = "data/names.txt";
 
     public NamesList() {
         names = new ArrayList<>();
@@ -66,7 +67,7 @@ public class NamesList {
 
     private void saveListOfNames() throws FileNotFoundException {
 
-        PrintStream toFile = new PrintStream("names.txt");
+        PrintStream toFile = new PrintStream(FILE_EXTENSION);// brug hellere "/" ikke"\\" da de virker på alle platforme.
         for (String name : names){
             toFile.println(name);
         }
@@ -76,7 +77,7 @@ public class NamesList {
 
     private void loadListOfNames() throws FileNotFoundException {
 
-        Scanner sx = new Scanner(new File("names.txt"));
+        Scanner sx = new Scanner(new File(FILE_EXTENSION));
         String name = "-nothing yet-";
         while (!name.isBlank() && sx.hasNextLine()) {
             name = sx.nextLine();
